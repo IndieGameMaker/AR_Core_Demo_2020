@@ -17,7 +17,7 @@ public class PlaneDetect : MonoBehaviour
     void Update()
     {
         Touch touch = Input.GetTouch(0);
-        if (touch.tapCount == 0) return;
+        if (touch.tapCount < 1 || touch.phase != TouchPhase.Began) return;
 
         TrackableHit hit;
         TrackableHitFlags flag = TrackableHitFlags.Default;
