@@ -9,7 +9,8 @@ public class PlaneDetect : MonoBehaviour
     private Transform arCamera;
 
     private Ray ray;
-    private UnityEngine.RaycastHit hitInfo;
+    private RaycastHit hitInfo;
+    private bool isActiveCanvas = false;
 
     void Start()
     {
@@ -41,6 +42,10 @@ public class PlaneDetect : MonoBehaviour
         {
             GameObject hitObj = hitInfo.collider.gameObject;
             hitObj.transform.Find("Canvas").gameObject.SetActive(true);
+            /*
+                GameObject.Find("") : 하이러키 뷰 루트에서 부터 전체 검색
+                GameObject.transform.Find("Canvas") : 해당 트랜스폼의 하위에 있는 게임오브젝트를 검색
+            */
         }
     }
 }
