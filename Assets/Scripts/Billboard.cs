@@ -13,6 +13,6 @@ public class Billboard : MonoBehaviour
 
     void LateUpdate()
     {
-        
+        transform.LookAt(arCamera.position);
     }
 }
