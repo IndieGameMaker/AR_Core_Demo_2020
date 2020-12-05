@@ -8,6 +8,9 @@ public class PlaneDetect : MonoBehaviour
     public GameObject tiger;
     private Transform arCamera;
 
+    private Ray ray;
+    private UnityEngine.RaycastHit hit;
+
     void Start()
     {
         arCamera = GameObject.Find("First Person Camera").GetComponent<Transform>();        
@@ -32,5 +35,11 @@ public class PlaneDetect : MonoBehaviour
                                                          rot.eulerAngles.y,
                                                          arCamera.position.z);
         }
+
+        // ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // if (UnityEngine.Physics.Raycast(ray.origin, ray.direction, out hit,  10.0f,  1<<8))
+        // {
+
+        // }
     }
 }
