@@ -21,6 +21,8 @@ public class MummyCtrl : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(dir);
         //부드럽게 회전 Slerp
         tr.rotation = Quaternion.Slerp(tr.rotation, rot, Time.deltaTime * 3.0f);
+        //직진 이동
+        tr.Translate(Vector3.forward * Time.deltaTime * 0.5f);
 
     }
 }
