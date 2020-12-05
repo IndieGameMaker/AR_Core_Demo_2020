@@ -22,5 +22,15 @@ public class PlaneDetect : MonoBehaviour
         TrackableHit hit;
         TrackableHitFlags flag = TrackableHitFlags.Default;
 
+        if (Frame.Raycast(touch.position.x, touch.position.y, flag, out hit))
+        {
+            var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+            GameObject _tiger = Instantiate(tiger, hit.Pose.position, Quaternion.identity, anchor.transform);
+            Quaternion rot = Quaternion.LookRotation(arCamera.position - hit.Pose.position);
+            _tiger.transform.rotation = Quaternion.Euler(arCamera.position.x,
+                                                         rot.eulerAngles.y,
+                                                         arCamera.position.z);
+        }
     }
 }
