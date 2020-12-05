@@ -8,24 +8,51 @@ public class SessionMgr : MonoBehaviour
 {
     public Text sessionInfo;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
+    {
+        StartCoroutine(UpdateUI());
+    }
+
+    IEnumerator UpdateUI()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(0.2f);
+
+            string tmp = "";
+
+            switch (Session.Status)
+            {
+                case SessionStatus.Initializing:
+                    tmp = "Initializing...";
+                    break;
+                case SessionStatus.Tracking:
+                    tmp = "Tracking...";
+                    break;
+                case SessionStatus.LostTracking:
+                    tmp = "Lost Tracking!!!";
+                    Invoke("DisplayLostReason", 0.2f);
+                    break;
+            }
+            sessionInfo.text = tmp;   
+        } 
+    }
+
+    void DisplayLostReason()
     {
         string tmp = "";
-
-        switch (Session.Status)
+        if (Session.Status == SessionStatus.LostTracking)
         {
-            case SessionStatus.Initializing:
-                tmp = "Initializing...";
-                break;
-            case SessionStatus.Tracking:
-                tmp = "Tracking...";
-                break;
-            case SessionStatus.LostTracking:
-                tmp = "Lost Tracking!!!";
-                break;
+            switch (Session.LostTrackingReason)
+            {
+                case LostTrackingReason.InsufficientLight:
+                    tmp = "Too Dark !!";
+                    break;
+                case LostTrackingReason.InsufficientFeatures:
+                    tmp = "Less Feature Points !!!";
+                    break;
+            }
         }
-        sessionInfo.text = tmp;    
     }
 
 }
