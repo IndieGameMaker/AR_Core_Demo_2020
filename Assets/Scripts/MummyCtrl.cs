@@ -16,7 +16,7 @@ public class MummyCtrl : MonoBehaviour
     void Update()
     {
         //목적지로 회전
-        Vector3 dir = targetTr.position - tr.position;     
+        Vector3 dir = new Vector3(targetTr.position.x, tr.position.y, targetTr.position.z) - tr.position;     
         //쿼터니언 타입으로 변환
         Quaternion rot = Quaternion.LookRotation(dir);
         //부드럽게 회전 Slerp
