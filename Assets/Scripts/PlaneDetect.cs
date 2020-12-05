@@ -9,7 +9,7 @@ public class PlaneDetect : MonoBehaviour
     private Transform arCamera;
 
     private Ray ray;
-    private UnityEngine.RaycastHit hit;
+    private UnityEngine.RaycastHit hitInfo;
 
     void Start()
     {
@@ -36,10 +36,11 @@ public class PlaneDetect : MonoBehaviour
                                                          arCamera.position.z);
         }
 
-        // ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // if (UnityEngine.Physics.Raycast(ray.origin, ray.direction, out hit,  10.0f,  1<<8))
-        // {
-
-        // }
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (UnityEngine.Physics.Raycast(ray.origin, ray.direction, out hitInfo,  10.0f,  1<<8))
+        {
+            GameObject hitObj = hitInfo.collider.gameObject;
+            hitObj.transform.Find("Canvas").gameObject.SetActive(true);
+        }
     }
 }
