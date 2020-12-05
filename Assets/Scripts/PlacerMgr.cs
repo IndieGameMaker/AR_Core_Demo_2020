@@ -24,9 +24,17 @@ public class PlacerMgr : MonoBehaviour
         } 
 
         TrackableHit hit;
-        TrackableHitFlags filter = TrackableHitFlags.PlaneWithinPolygon | TrackableHitFlags.FeaturePointWithSurfaceNormal;
+        TrackableHitFlags filter = TrackableHitFlags.PlaneWithinPolygon 
+                                    | TrackableHitFlags.FeaturePointWithSurfaceNormal;
 
-        
+        if (Frame.Raycast(touch.position.x, touch.position.y, filter, out hit))
+        {
+            //앵커 생성
+            var anchor = hit.Trackable.CreateAnchor(hit.Pose);
+            //증강시킬 객체 생성
+            GameObject _mummy = Instantiate(mummy, hit.Pose.position, Quaternion.identity, anchor.transform);
+        }
+
         
     }
 }
