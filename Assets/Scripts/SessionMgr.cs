@@ -31,7 +31,7 @@ public class SessionMgr : MonoBehaviour
                     break;
                 case SessionStatus.LostTracking:
                     tmp = "Lost Tracking!!!";
-                    Invoke("DisplayLostReason", 0.2f);
+                    DisplayLostReason();
                     break;
             }
             sessionInfo.text = tmp;   
@@ -53,6 +53,7 @@ public class SessionMgr : MonoBehaviour
                     break;
             }
         }
+        sessionInfo.text = tmp;
     }
 
 }
