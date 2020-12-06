@@ -54,4 +54,16 @@ public class MeasureMgr : MonoBehaviour
         float length = Vector3.Distance(prevPos, currPos);
         lenText.text = length.ToString("000.00") + "m";
     }
+
+    public void OnInitMarker()
+    {
+        GameObject[] makers = GameObject.FindGameObjectsWithTag("MARKER");
+        foreach(var _maker in makers)
+        {
+            Destroy(_maker);
+        }
+
+        firstPos = Vector3.zero;
+        tapCount = 0;
+    }
 }
