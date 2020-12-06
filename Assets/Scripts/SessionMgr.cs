@@ -12,14 +12,15 @@ public class SessionMgr : MonoBehaviour
     {
         StartCoroutine(UpdateUI());
     }
+    
+    string tmp = "";
 
     IEnumerator UpdateUI()
     {
         while(true)
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
 
-            string tmp = "";
 
             switch (Session.Status)
             {
@@ -40,20 +41,20 @@ public class SessionMgr : MonoBehaviour
 
     void DisplayLostReason()
     {
-        string tmp = "";
+        //string tmp = "";
         if (Session.Status == SessionStatus.LostTracking)
         {
             switch (Session.LostTrackingReason)
             {
                 case LostTrackingReason.InsufficientLight:
-                    tmp = "Too Dark !!";
+                    tmp += " Too Dark !!";
                     break;
                 case LostTrackingReason.InsufficientFeatures:
-                    tmp = "Less Feature Points !!!";
+                    tmp += " Less Feature Points !!!";
                     break;
             }
         }
-        sessionInfo.text = tmp;
+        //sessionInfo.text = tmp;
     }
 
 }
