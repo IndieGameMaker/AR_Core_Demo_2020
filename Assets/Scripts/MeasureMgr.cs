@@ -65,5 +65,6 @@ public class MeasureMgr : MonoBehaviour
 
         firstPos = Vector3.zero;
         tapCount = 0;
+        lenText.text = "0.0m";
     }
 }
